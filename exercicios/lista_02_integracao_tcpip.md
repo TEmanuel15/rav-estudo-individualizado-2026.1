@@ -6,7 +6,15 @@ A arquitetura TCP/IP (*Transmission Control Protocol/Internet Protocol*) foi ori
 
 **(a)** Explique por que o modelo *best-effort* é insuficiente para suportar aplicações de voz e vídeo em tempo real em uma rede convergente.
 
+### Questão 1 (a)
+
+O modelo Best-effort sugere que a rede fará o maior esforço possível para realizar a entrega de pacotes, porém, ele não garante nada explicitamente, visto que não existe: Reserva em largura de banda, garantias (Atraso máximo, Jitter, Perda de pacotes), ou seja, por mais que a rede "se esforce" ela não te dá garantias, garantias essas que são extremamente necessárias quando se trata de aplicações de multimídia em tempo real (Streamings, videoconferências, ensino remoto, etc.). Para aplicações de multimídia, é necessário assegurar QoS (A qualidade do serviço), e para isso, são utilizadas duas principais arquiteturas padronizadas, IntServ e DiffServ. A IntServ funciona seguindo o seguinte fluxo:
+
+A Aplicação solicita recursos > A Rede checa a disponibilidade de recursos > Os Roteadores reservam recursos ao longo do trajeto > A transmissão agora tem garantia de QoS > E por fim, os dados são enviados.
+
 **(b)** Descreva os dois modelos propostos pela IETF (*Internet Engineering Task Force* — Força-Tarefa de Engenharia da Internet) para adicionar suporte a qualidade de serviço sobre IP (*Internet Protocol*): **IntServ** (*Integrated Services* — Serviços Integrados) e **DiffServ** (*Differentiated Services* — Serviços Diferenciados), destacando suas diferenças em escalabilidade e granularidade de controle.
+
+Dentre as vantagens do IntServ, podemos citar que ela possui garantias determinísticas e alta precisão em QoS, porém, possui necessidade de manter estado por fluxo, alto consumo de memória e processamento, complexidade alta e escalabilidade extremamente limitada. Já o DiffServ foi criado com o objetivo de superar os problemas de escalabilidade do IntServ, por este motivo os pacotes recebem marcações no campo DSCP do cabeçalho IP, e sendo assim os roteadores analisam apenas a classe do pacote, ao invés de milhares de fluxos realizando o controle, temos classes predefinidas (Voz, Vídeo, Dados) e todos os pacotes de uma mesma categoria são tratados da mesma forma. Apesar disso, ele também possui certas desvantagens, como não possuir garantias determinísticas e ter uma menor precisão no controle dos recursos por não possuir reserva individual, apenas políticas de prioridade.
 
 ---
 
