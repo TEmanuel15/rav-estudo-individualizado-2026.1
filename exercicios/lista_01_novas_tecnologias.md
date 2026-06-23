@@ -6,7 +6,23 @@ A evolução das redes de comunicação passou por diversas gerações, desde as
 
 **(a)** Compare os modelos de comutação de circuitos e comutação de pacotes em termos de alocação de recursos, latência e eficiência de uso do enlace.
 
+### Questão 1 (a) 
+
+Comparação entre os modelos por categoria:
+
+Alocação de Recursos: Em comutação de circuitos, usa-se largura de banda fixa, que assegura uma qualidade de serviço muito boa ao custo de possíveis desperdícios com usuários "AFK" (Away from keyboard). Já em comutação de pacotes, são compartilhados enlaces em vários fluxos diferentes, o que permite acomodar vários usuários com variação no tráfego, que evita parcialmente o problema de desperdícios com usuários AFK.
+
+Latência: Em comutação de circuitos existe um atraso inicial, pra criar o circuito, mas depois disso os atrasos são praticamente constantes (sem grande variação). Em comutação de pacotes, como cada pacote pode seguir por um caminho diferente, se houverem filas/congestionamentos acaba aumentando e causando mais variação nos atrasos.
+
+Eficiência em aplicações modernas: Bom, atualmente a comutação de pacotes é bem mais eficiente em termos de uso em aplicações modernas, principalmente por dois motivos: 1- Os usuários não transmitem continuamente; 2- A multiplexação (acho que escrevi certo KK) estatística aumenta o aproveitamento da rede, reduzindo desperdícios.
+
 **(b)** Explique como o surgimento da fibra óptica e das tecnologias DWDM (*Dense Wavelength Division Multiplexing* — Multiplexação por Divisão de Comprimento de Onda Densa) impactou a capacidade das redes de longa distância.
+
+### Questão 1 (b)
+
+Impacto da Fibra Óptica nas Redes de Longa Distância: Basicamente uma revolução nas telecomunicações pela capacidade muito superior aos cabos de cobre, suportando transmissões de até centenas de terabytes por segundo, além de não sofrer interferência eletromagnética. tirando o fato de que o sinal pode percorrer centenas de kilômetros antes de precisar de amplificação/regeneração (Conceitos que eu entendo vagamente apesar dos nomes serem bem sugestivos).
+
+Impacto do DWDM nas Redes de Longa Distância: Aumento massivo na capacidade de transmissão, visto que uma única fibra pode transportar vários canais por diferentes comprimentos de onda, de modo que normalmente não é necessário adicionar novas fibras pra aumentar a capacidade, basta adicionar novos comprimentos de onda.
 
 ---
 
