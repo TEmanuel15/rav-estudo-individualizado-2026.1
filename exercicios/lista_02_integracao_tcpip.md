@@ -26,7 +26,15 @@ O protocolo RSVP (*Resource Reservation Protocol* — Protocolo de Reserva de Re
 
 **(a)** Descreva o funcionamento do RSVP, explicando o papel das mensagens `PATH` (caminho) e `RESV` (reserva) no estabelecimento de uma reserva de recursos fim a fim.
 
+### Questão 2 (a)
+
+O RSVP é o protocolo de reserva de recursos utilizado pelo IntServ, serve para solicitar e reservar recursos ao longo do caminho em uma comunicação fim a fim. A mensagem PATH é enviada do emissor ao receptor, ela informa o roteador e o receptor acerca do fluxo de dados, informações como nome do emissor, taxa/tamanho dos pacotes, etc. Cada roteador registra um Path State, que é depois utilizado para encaminhar a mensagem de reserva (RESV). A mensagem RESV "responde" a mensagem PATH, o receptor vai decidir se quer reservar recursos e envia uma mensagem RESV para o emissor, usando o mesmo caminho registrado pela mensagem PATH.
+
 **(b)** Por que o RSVP enfrenta problemas de escalabilidade em redes de backbone? Como o modelo DiffServ (*Differentiated Services*) contorna essa limitação?
+
+### Questão 2 (b)
+
+O RSVP apresenta problemas de escalabilidade pois o modelo IntServ reserva os recursos individualmente, por fluxo. Em resumo, todos os roteadores devem manter informações de estado pra cada fluxo ativo no momento, além de precisarem processar mensagens PATH e RESV continuamente, ou seja, a medida que o número de fluxos aumenta, aumenta também o consumo de memória, processamento, e sinalização na rede. O DiffServ contorna esse problema pois não reserva recursos individualmente, ele separa e classifica os pacotes por tipo de serviço utilizando classes (voz, vídeo, etc.), de forma que os roteadores apenas identificam uma classe e aplicam protocolos/políticas pré-definidas de acordo com a classe do pacote.
 
 ---
 
@@ -36,7 +44,15 @@ Em uma rede corporativa convergente, VoIP (*Voice over IP* — Voz sobre IP), vi
 
 **(a)** Explique como o campo DSCP (*Differentiated Services Code Point* — Ponto de Código de Serviços Diferenciados) no cabeçalho IP é utilizado para classificar e marcar os pacotes nesse cenário, citando os valores PHB (*Per-Hop Behavior* — Comportamento por Salto) recomendados para cada classe de tráfego: EF (*Expedited Forwarding* — Encaminhamento Expresso), AF (*Assured Forwarding* — Encaminhamento Assegurado) e BE (*Best Effort* — Melhor Esforço).
 
+### Questão 3 (a)
+
+O campo DSCP vai separar os tipos de pacote por códigos, definindo seu nível de prioridade e que tipo de política aplicar, VoIP utiliza PHB EF (Expedited Fowarding), possui baixa latência e máxima prioridade. Videoconferência utiliza o PHB AF(Assured Fowarding), possui alta prioridade, garantia de encaminhamento e níveis de precedência para descartar em caso de congestionamento. Dados gerais do escritório, utilizam da BE(Best Effort), onde os pacotes são encaminhados de acordo com a disponibilidade da rede, não possuindo garantia alguma de QoS e nem nível de prioridade.
+
 **(b)** Descreva o papel dos mecanismos de **policiamento** (*policing*) e **conformação** (*shaping*) de tráfego na borda da rede, explicando a diferença entre os dois.
+
+### Questão 3 (b)
+
+O Policiamento tem objetivo de fiscalizar o tráfego recebido e checar se ele respeita as definições estabelecidas, o funcionamento consiste em: Medir o tráfego > Comparar com o Perfil de Tráfego Permitido > Se o tráfego exceder os limites estabelecidos, aplica uma correção pré-definida (descartar pacotes, reduzir prioridade, etc.). A Conformação procura adaptar o tráfego de acordo com o perfil permitido, utilizando buffers para armazenar pacotes que excedam as pré-definições, é útil para reduzir congestionamentos, porém aumenta latência devido o enfileiramento.
 
 ---
 
@@ -46,7 +62,15 @@ O protocolo SIP (*Session Initiation Protocol* — Protocolo de Iniciação de S
 
 **(a)** Descreva a sequência de mensagens SIP envolvida no estabelecimento e encerramento de uma chamada VoIP (*Voice over IP*) entre dois *user agents* (agentes de usuário), incluindo os papéis de *proxy* (intermediário de sinalização) e servidor de registro.
 
+### Questão 4 (a)
+
+A sequência de mensagens é: REGISTER > INVITE > 100 TRYING > 180 RINGING > 200 OK > ACK. Após a última mensagem (ACK), se tudo correr bem, a sessão SIP está estabelecida. No encerramento, a sequência é bem menor: BYE > 200 OK. A sessão é finalizada, liberando os recursos associados à chamada. O servidor de resgistros serve para autenticar os usuários, associar os identificadores SIP aos IPs atuais e guardar informações em um servidor de localização (Isso permite que os usuários sejam encontrados mesmo que mudem de rede).
+
 **(b)** Como o SDP (*Session Description Protocol* — Protocolo de Descrição de Sessão) complementa o SIP na negociação dos parâmetros de mídia — codecs, endereço IP e porta RTP (*Real-time Transport Protocol* — Protocolo de Transporte em Tempo Real) — de uma sessão?
+
+### Questão 4 (b)
+
+O SDP complementa o SIP pois ele especifica como a mídia será transmitida, descrevendo os parâmetros da mídia (codecs, endereço IP, portas RTP) para garantir que a comunicação ocorra corretamente, enquanto o SIP realiza mais o controle de "Estabelecer - Alterar - Finalizar" a sessão.
 
 ---
 
