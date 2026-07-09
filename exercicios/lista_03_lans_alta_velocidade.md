@@ -6,7 +6,13 @@ A Ethernet evoluiu de 10 Mbps até as versões de 400 Gbps e 800 Gbps atualmente
 
 **(a)** Trace a linha evolutiva da Ethernet desde o padrão original (10BASE-T, onde T indica par trançado — *twisted pair*) até o 400GbE (400 Gigabit Ethernet), destacando as principais mudanças no meio físico, no método de acesso ao meio e na topologia de rede a cada salto de geração.
 
+### Questão 1 (a)
+10BASE-T (10 mbps, Par trançado UTP, CSMA/CD); 100BASE-TX (100 mpps, Par trançado Cat5, CSMA/CD); 1000BASE-T (1 gbps, Par trançado Cat5/6 ou Fibra Óptica, Full Duplex); 10GbE(10 Gbps, Fibra Óptica, Full Duplex); 40GbE(40 Gbps, Fibra Óptica, Full Duplex); 100GbE(100 Gbps, Fibra Óptica, Full Duplex); 200GbE/400GbE(200~400 Gbps, Fibra Óptica de Alta Capacidade, Full Duplex);
+
 **(b)** Por que o CSMA/CD (*Carrier Sense Multiple Access with Collision Detection* — Acesso Múltiplo por Detecção de Portadora com Detecção de Colisão) tornou-se obsoleto nas redes Ethernet modernas? Qual característica da infraestrutura atual eliminou a necessidade desse mecanismo?
+
+### Questão 1 (b)
+O CSMA/CD se tornou obsoleto quando ocorreu a substituição dos hubs por switches Ethernet operando em full-duplex, criando enlaces ponto a ponto exclusivos entre cada host e o switch, eliminando o domínio de colisão e por consequência, o detector de colisões.
 
 ---
 
