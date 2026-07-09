@@ -85,4 +85,12 @@ A distribuição de tráfego esperada é:
 
 **(a)** Calcule a largura de banda reservada para voz e para vídeo, apresentando os valores intermediários por classe, e determine a banda remanescente disponível para dados.
 
+### Questão 5 (a)
+A largura reservada para voz é de aproximadamente 1,28 mbps e a banda reservada para vídeo é de 20 mbps, totalizand 21,28 mbps resesrvados para voz e vídeo. Dessa forma, restam 78,72 mbps de banda disponível para dados.
+
 **(b)** Elabore o projeto da política de filas LLQ (*Low Latency Queuing* — Enfileiramento de Baixa Latência) + CBWFQ (*Class-Based Weighted Fair Queuing* — Enfileiramento Justo Ponderado Baseado em Classes) para esse enlace, especificando para cada classe: o mecanismo de escalonamento utilizado, a banda garantida ou peso relativo atribuído e a justificativa técnica com base nos requisitos de latência e sensibilidade a jitter (variação de atraso) de cada tipo de tráfego.
+
+### Questão 5 (b)
+
+A política LLQ cria uma fila de prioridade, e é utilizada unicamente no tráfego de voz. Sempre que houverem pacotes da classe "voz", eles são transmitidos antes dos demais (Respeitando o limite de banda disponibilizado). Voz é muito sensível à latência e jitter e portanto precisa de tratamento prioritário.
+A política CBWFQ é utilizada para as demais classes, a classe "video" recebe uma garantia de 20 mbps de banda, assegurando a qualidade das videoconferências, mas sem prioridade para que não "monopolize" o enlace. A classe "dados" é menos sensível à jitter e latência, então pode ter sua distribuição controlada também pela política CBWFQ, que irá distribuir a banda de forma justa, baseada nos pesos distribuídos. 
